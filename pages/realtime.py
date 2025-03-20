@@ -36,7 +36,7 @@ try:
 
     Conf_threshold = 0.5
     NMS_threshold = 0.4
-    pothole_data_file = "pothole_data.csv"
+    pothole_data_file = "../pothole_data.csv"
 
     stframe = st.image([])
 
