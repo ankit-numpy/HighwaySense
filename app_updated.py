@@ -248,7 +248,8 @@ def main():
     lat, lon = get_location()
     st.sidebar.write(f"Current Location: {lat:.6f}, {lon:.6f}")
     st.sidebar.write("Note: For more accurate location, please allow location access in your browser.")
-    
+    st.sidebar.page_link("pages/realtime.py", label="Go to Report a POTHOLE")
+     st.sidebar.page_link("pages/visualize_potholes.py", label="Go to Map")
     option = st.radio("Select Input Type", ("Image", "Video", "Real-time Camera"))
     
     if option == "Image":
