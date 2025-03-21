@@ -91,4 +91,4 @@ except Exception as e:
     st.error(f"Error: {e}")
 finally:
     cap.release()
-    cv.destroyAllWindows()
+    #cv.destroyAllWindows()
