@@ -13,7 +13,7 @@ def load_data():
 def get_current_location():
     g = geocoder.ip("me")
     if g.latlng:
-        return pd.DataFrame([{"latitude": g.latlng[0], "longitude": g.latlng[1], "type": "current_location"}])
+        return pd.DataFrame([{"Latitude": g.latlng[0], "Longitude": g.latlng[1], "type": "current_location"}])
     return None
 
 # Streamlit app
@@ -23,9 +23,9 @@ def main():
     df = load_data()
     df["type"] = "pothole"  # Mark all pothole locations
     
-    # Assuming CSV has 'latitude' and 'longitude' columns
-    if 'latitude' not in df.columns or 'longitude' not in df.columns:
-        st.error("CSV file must contain 'latitude' and 'longitude' columns")
+    # Assuming CSV has 'Latitude' and 'Longitude' columns
+    if 'Latitude' not in df.columns or 'Longitude' not in df.columns:
+        st.error("CSV file must contain 'Latitude' and 'Longitude' columns")
         return
     
     # Add menu option to select map type
@@ -49,7 +49,7 @@ def main():
     layer = pdk.Layer(
         "ScatterplotLayer",
         df,
-        get_position=["longitude", "latitude"],
+        get_position=["Longitude", "Latitude"],
         get_color="color",
         get_radius=100,
         pickable=True,
@@ -60,8 +60,8 @@ def main():
     )
     
     view_state = pdk.ViewState(
-        latitude=df['latitude'].mean(), 
-        longitude=df['longitude'].mean(),
+        Latitude=df['Latitude'].mean(), 
+        Longitude=df['Longitude'].mean(),
         zoom=25,
         pitch=45,
         bearing=0,
@@ -71,7 +71,7 @@ def main():
         layers=[layer],
         initial_view_state=view_state,
         map_style=map_styles[map_type],
-        tooltip={"text": "Latitude: {latitude}\nLongitude: {longitude}"}
+        tooltip={"text": "Latitude: {Latitude}\nLongitude: {Longitude}"}
     )
     
     st.pydeck_chart(deck)
